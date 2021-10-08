@@ -43,7 +43,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home),P
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupViews()
-        setupListeners()
     }
 
     private fun setupViews(){
@@ -68,29 +67,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home),P
             }
         }
 
-        /*viewModel.databaseMediaList.observe(viewLifecycleOwner){ mediaList ->
-            Log.d("BOSS_DK","${mediaList.size}")
-        }*/
-
         if(permissionsHelper.areAllPermissionsGranted()){
             viewModel.loadAllAlbums()
         }else {
             permissionsHelper.requestPermissions()
         }
-    }
-
-    /*override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId){
-            android.R.id.home -> {
-                (activity as AppCompatActivity)?.supportActionBar?.setDisplayHomeAsUpEnabled(false)
-                return true
-            }
-        }
-        return super.onOptionsItemSelected(item)
-    }*/
-
-    private fun setupListeners(){
-
     }
 
     override fun onAllPermissionsGranted() {
